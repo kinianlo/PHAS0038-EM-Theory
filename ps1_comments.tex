@@ -1,0 +1,123 @@
+\documentclass[a4paper]{article}
+\usepackage[scale=0.75]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb, bm}
+\usepackage{physics}
+
+\title{Comments on Problem Sheet 1 of PHAS0038 Electromagnetic Theory}
+\author{Kin Ian Lo}
+
+\begin{document}
+\maketitle
+\section{Question 1}
+\label{sec:question_1}
+This question is all about a Linear, Isotropic and Homogeneous (LIH) solid sphere with an dielectric constant $\mu_r$ which is immersed in an external constant eclectic field $\mathbf{E}_0 = E_0 \mathbf{\hat{z}}$. 
+At this point, there is sufficient information to determine the electric potential $V(\mathbf{r})$ and the polarisation $\mathbf{P}_s$ induced inside the sphere by the external field $\mathbf{E}_0$.
+However, the question is so nice as to provide you with two pieces of information:
+\begin{enumerate}
+    \item the potential inside the sphere is of the form 
+        \[
+            V_\text{in}(\mathbf{r}) = - K_1 z = - K_1 r \cos\theta
+        ,\] 
+    \item and the potential outside the sphere is of the form 
+        \[
+            V_\text{out}(\mathbf{r}) = - E_0 z + K_0 \cos\theta/r^2 = -E_0 r \cos\theta + K_0 \cos(\theta)/r^2
+        .\] 
+\end{enumerate}
+Note that $V_\text{in}$ and $V_\text{out}$ are already expressed in the form of the general solution to the Laplace's equation in spherical coordinates with azimuthal symmetry. Quite a few of you started your answers with this general solution to Laplace's equation, i.e.
+\[
+    V_\text{in}(\mathbf{r}) = \sum_{l=0}^\infty \left[ A_l r^l + B_l r^{-l-1} \right] P_l(\cos\theta)
+,\] and
+\[
+    V_\text{out}(\mathbf{r}) = \sum_{l=0}^\infty \left[ C_l r^l + D_l r^{-l-1} \right] P_l(\cos\theta)
+.\] 
+Most of you went down this path ended up with excessive algebra when trying to determine the coefficients $A_l$, $B_l$, $C_l$ and $D_l$ using boundary conditions, without noticing that the question has already provided you with the coefficients.
+\textbf{There is no benefit from writing $V_\text{in}$ and $V_\text{out}$ as the general solutions!}
+It is like actually doing dot products trying to find the x, y and z components of a Cartesian vector when it is presented as  $\mathbf{v} = K \mathbf{\hat{x}}$.
+Without any work, you know that the y and z components of $\mathbf{v}$ are zeros. 
+Barring the minor issues mentioned above, the (i) part of the question was generally well answered and many of you scored full marks.
+
+The (ii) part of the question was bit of a mess. Many of you did not realise that by knowing the potential inside the sphere, it is possible to take the gradient of the potential to get the E-field inside the sphere 
+\[
+\mathbf{E}_\text{in} = - \nabla V_\text{in} = K_1 \mathbf{\hat{z}}
+.\] 
+Knowing $\mathbf{E}_\text{in}$ is clearly not the end of the story because (ii) asks for the E-field $\mathbf{E}_S$ contributed by the polarisation $\mathbf{P}_S$ inside the sphere. It is very easy to get distracted by the wordings in the question. In the way that it is natural to try finding the \emph{contribution} to E-field of something by first determining the charge distribution and then use Coulomb's law to integrate all the tiny contributions. Well, doing just that is not at all wrong but the information provided by the question is wasted. The smart move here is to utilise the information given and give yourself an easy time.
+We know that $\mathbf{E}_\text{in}$ must have a contribution from the external field $\mathbf{E}_0$ and the rest of $\mathbf{E}_\text{in}$ must be contributed by $\mathbf{P}_S$.
+So we have
+\[
+\mathbf{E}_\text{in} = \mathbf{E}_0 + \mathbf{E}_S
+.\] 
+Our aim is to write $\mathbf{E}_S$ in terms of $\mathbf{P}_S$. Given the above equation, we see that all we need to do is to write $\mathbf{E}_\text{in}$ in terms of $\mathbf{P}_S$ since we know $\mathbf{E}_0$. 
+We know just a way of doing so with the definition of relative permeability $\epsilon_r$:
+ \[
+     \mathbf{P} = \epsilon_0 (\epsilon_r - 1) \mathbf{E}
+.\] 
+\section{Question 2}
+\label{sec:question_2}
+Generally well done in the question. Trivial application of the Biot-Savart law and the definition of magnetic moments. Only thing I can say is that you should always put a sentence or two to explain how the symmetry of a problem simplifies your working to prevent from losing marks in an exam or problem sheet. 
+Markers have to abide by the marking scheme. 
+Even if you just wrote down a sentence with the \emph{symmetry} in it, chances are you can still get some marks on this. 
+
+\section{Question 3}
+\label{sec:question_3}
+This question is about an infinitely long wire with radius $a$ immersed into a medium with a relative magnetic susceptibility $\mu_r$. The wire has a magnetic susceptibility $\mu=\mu_0$ and it is carrying a free current $I_f$ which is uniform over the cross-sectional area of the wire.
+
+Very few of you got this question correct. Many of you misunderstood the question in the following way: $\mu = \mu_0$ outside the wire and  $\mu = \mu_0 \mu_r$ the wire. This is not the case.
+Remember that the medium that surrounds the wire is the one with $\mu = \mu_0 \mu_r$ and so \textbf {all magnetisation currents run in this medium and the wire carries no magnetisation currents}.
+
+Many of you successfully recalled the Ampere's law for $\mathbf{H}$ written in terms of the free current density $\mathbf{j}_f = I_f/(\pi a^2)$:
+\[
+\oint \mathbf{H} \cdot d \mathbf{l} = \iint \mathbf{j}_f \cdot d \mathbf{S}
+,\] 
+where the path of integration is a circle of radius $r$ perpendicular to the axis of the wire and centred at the centre of the wire.
+With the line integration taken around the circumference of the wire.
+Let us define the $\mathbf{\hat{z}}$ direction as the direction of the free current $I_f$.
+Due to the cylindrical symmetry of the problem, we expect the direction of $\mathbf{H}$ to be $\hat{\mathbf{\phi}}$ in a right-handed cylindrical coordinate system.
+Apply the Ampere's law to our problem, we have
+\[
+    H_\phi (2 \pi r) = \left\{\begin{array}{lr}
+        j_f (\pi r^2), & r < a \\
+        I_f, & a \leq r
+\end{array}\right
+.\] 
+By the definition of relative magnetic susceptibility $\mu_r$, we have  $\mathbf{M} = (\mu_r-1) \mathbf{H}$. It is easy to see that $\mathbf{M}$ is parallel to $\mathbf{H}$, and has a $\phi$ component of
+\[
+    M_\phi = \left\{ \begin{array}{lr}
+            0, & r < a \\
+            (\mu_r - 1) H_\phi = (\mu_r - 1) I_f/(2 \pi r), & a \leq r
+    \end{array} \right
+.\] 
+It is worth mentioning that the magnetisation vanishes inside the wire because the magnetic susceptibility in the wire is just one.
+Nearly all of you realised that getting $\mathbf{M}$ is the way to getting the magnetisation currents, although many of you showed confusion between the volume magnetisation current $\mathbf{j}_m = \nabla \times \mathbf{M}$ and the surface magnetisation current $\mathbf{K}_m = \mathbf{M} \times \mathbf{\hat{n}}$. I cannot stress enough that $\mathbf{\hat{n}}$ is the normal vector pointing \textbf{away} from the medium where the magnetisation $\mathbf{M}$ lives, in this case, outside the wire. With my choice of coordinate system, $\mathbf{\hat{n}} = - \mathbf{\hat{r}}$ (only one of the papers I marked has the correct choice of $\mathbf{\hat{n}}$).
+The question asked specifically the surface magnetisation current $\mathbf{K}_m$. So what you need to do is to evaluate $\mathbf{K}_m = \mathbf{M} \times \mathbf{\hat{n}}$ at $r=a$ where the boundary lies giving
+\[
+    \mathbf{K}_m = M_\phi \hat{\mathbf{\phi}} \times (- \mathbf{\hat{r}}) = M_\phi \mathbf{\hat{z}}
+.\] 
+These surface currents $\mathbf{K}_m$ run along the axis of the wire and only flows on the boundary between the wire and the medium. Note that $\mathbf{K}_m$ is a surface current density so we have to multiple $\mathbf{K}_m$ by the length it run through which is the circumference of the wire $(2\pi a)$ to get the total surface magnetisation current $I_m=(\mu_r -1) I_f$.
+
+Now I will talk about the most popular incorrect approach I saw while marking. There is quite a number of students who started with the differential form of the Ampere's law for $\mathbf{H}$:
+\[
+\nabla \times \mathbf{H} = \mathbf{j}_f
+.\] They quickly realised that $\mathbf{M} = (\mu_r - 1) \mathbf{H}$ and substitute $\mathbf{H}$ in terms of $\mathbf{M}$ in Ampere's law, giving the very illuminating equation 
+\[
+    \nabla \times \mathbf{M} = (\mu_r - 1) \mathbf{j}_f
+.\] They then recognised this $\nabla  \times \mathbf{M}$ as the volume magnetisation current $\mathbf{j}_m$ which is in deed true. (Although the question asks for the \emph{surface} magnetisation current but I will keep going with the incorrect approach.) So they got this stunningly thought-provoking equation 
+\[
+    \mathbf{j}_m = (\mu_r - 1) \mathbf{j}_f
+.\] There is still nothing wrong with the physics here, but you have to be very careful with that $\mu_r$ in the equation:  $\mu_r = 1$ inside the wire, which simply tells you that $\mathbf{j}_m = 0$ inside the wire! But the students who took this path did not realise this and went on to wrongly conclude that $I_m = (\mu_r - 1) I_f$ by doing a surface integration to get the total currents on both side of the equation. In fact, if you do the surface integral over a cross-section of the wire, you would get  $0 = 0$, which is not particularly useful. That means that \textbf{there is no magnetisation nor magnetisation currrents inside the wire}. The magnetisation currents, and in particular, the surface magnetisation current is solely due to the magnetisation of the medium that surrounds the wire.
+
+Here is a philosophical point I would like to make.
+So we have this surface magnetisation current $\mathbf{K}_m$ running along the axis of the wire and on the boundary.
+Since magnetisation currents are local in the sense that those currents are not transporting charges macroscopically, one should expect that the volume magnetisation current $\mathbf{j}_m$, which flows in the bulk of the surrounding medium, to exactly cancel out the current due to $\mathbf{K}_m$. 
+This is to ensure that no charges are being transported due to magnetisation currents alone. 
+However, if you try to calculate the volume magnetisation current $\mathbf{j}_m = \nabla \times \mathbf{M}$, you will find that $\mathbf{j}_m = 0$. 
+This can be easily checked by evaulating $\mathbf{j}_m = \nabla  \times \mathbf{M}$ where $\mathbf{M} \propto \hat{\mathbf{\phi}}/r$. 
+This is very unsettling.
+Does that means the surface magnetisation current has become a free current? If so, what would an ammeter connected to the wire measure? 
+The answer is no, the surface magnetisation current is still just bounded current and the ammeter would still measure $I_f$.
+This is actually an artefact of the infinite length of the wire (and the surrounding medium). In reality, you cannot have the surrounding medium to fill the whole universe. The medium must have other boundaries other than the one where the medium and the wire meets. If you take also the surface currents on those boundaries into consideration, you will find that all those currents cancel out. 
+It is the infinite nature of the problem that makes us forget about the existence of the other boundaries.
+\end{document}
