@@ -1,0 +1,184 @@
+\documentclass[a4paper]{article}
+\usepackage[scale=0.75]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb, bm}
+\usepackage{physics}
+
+\title{General feedback for EM Theory Problem Sheet 2}
+\author{Kin Ian Lo}
+
+\begin{document}
+\maketitle
+
+\section*{Question 1}
+\label{sec:question_1}
+This question is a variant of the classical EM problem in which a conducting rod sit on up of two parallel conducting rails, with a constant and uniform magnetic field.
+\subsection*{(a)}
+One common issue is that we are so used to writing down the flux as 
+\[
+\Phi = B A
+,\] 
+where $B$ is the (uniform) magnetic field strength and $A$ is the area. In this question, the magnetic field $\mathbf{B} = \beta_0 (x-x_0)^2 \mathbf{\hat{z}}$ is obviously not uniform. So when you write the above formula, it is ambiguous what $B$ refers to. Is it  $B(x)$ or $B(x_0)$ ?
+Therefore, it is not correct to write down this formula and I deducted one mark for those who did.
+
+To correctly calculate the magnetic flux through the area enclosed by the resistor, sliding arm and the rails, we have to do an integration:
+\[
+    \Phi(x) = \int_{x_R}^x dx' L |\mathbf{B}(x')|
+.\] 
+Note that the lower limit of the integral is $x_R$ which I defined it to be the position of the resistor on the x-axis.
+Some of you put $x_0$ or $0$ in the lower limit. The question did not specify the position of the resistor and you should not assume  $x_R = x_0$ or  $x_R = 0$, but this does not affect the result after the time derivative. Therefore, although doing so is technically wrong but I did not deduct any marks for that. 
+Substitute the given B-field gives
+\[
+    \Phi(x) = \int_{x_R}^x d' L \beta_0 (x-x_0)^2
+.\] 
+Evaluate the integral gives
+\[
+    \Phi(x) = L \beta_0 \frac{(x-x_0)^3}{3} - L \beta_0 \frac{(x_R-x_0)^3}{3}
+.\] 
+Notice that the second term is a constant. Taking the time derivative:
+\[
+    \frac{d\Phi(x(t))}{dt} =  L \beta_0 (x-x_0)^2 \frac{dx}{dt}
+.\] 
+Of course the above is not the most efficient way to get the required expression, because I have taken a derivative right after an integration. 
+The most efficient way is to argue that $d\Phi = B(x) dA$ and we know that $A = L (x - x_R)$. So we have 
+\[
+    d\Phi = B(x) L dx
+.\] 
+We can then make the mathematically doggy move\footnote{We are physicists so we can live with that.} of divining both side with $dt$ to give the required expression:
+\[
+    \frac{d\phi}{dt} = B(x)L \frac{dx}{dt}
+.\] 
+\subsection*{(b)}
+For the sub-question (b), the most common mistake was forgetting to argue for why the force opposes the direction of travel. This (unfortunately) worth one whole mark according to the marking scheme.
+
+The most straight forward approach for this sub-question is to use Ohm's law\footnote{The question, however, did not explicitly say that the sliding arm and the rails have negligible resistance, which is quite unfortunately but one could have easily guessed this implicit assumption.
+} to find out the current in the loop and use Lenz's law to argue that the current is clockwise.
+And then use Lorentz force law to find the magnitude and direction of the force on the sliding arm. The direction of the force follows from right-hand-rule applied to the cross product in Lorentz force law.
+
+A few of you used the fact that the dissipative power in the resistor is equal (in magnitude) to the rate of work done on the sliding arm. This is a fact but I would say this fact is not a common knowledge and should be avoid when doing problem sheets or exams, unless you have clearly explained the fact with reasoning using common knowledge.
+For the benefits of the others who did not went down this path, I will show how this is done.
+
+We know the dissipative power of resistor is 
+\[
+P_\text{resis} = \frac{V^2}{R}
+.\] 
+The power of work done on the sliding arm is 
+\[
+    P_\text{arm} = \frac{dx}{dt} F = v F 
+,\] 
+where $F$ is the magnitude of the Lorentz force on the arm.
+Due to conservation of energy\footnote{Energy is conserved even though an external magnetic field is present. This is because a magnetic field does no work at all according to Lorentz force law.}, we required
+\[
+P_\text{arm} + P_\text{resis} = 0
+.\] 
+This gives an expression for $F$:
+ \[
+F = - v \frac{V^2}{R}
+.\] 
+One can then substitute the expression for induced potential $V = d\Phi/dt$ found in (a):
+ \[
+     F = - \frac{L^2 \beta_0^2}{R} (x-x_0)^4 v
+.\] 
+
+\subsection*{(c)}
+For sub-question (c), as long as you know how to use the hint giving in the question then you are fine. The trick is to realise that 
+\[
+    v (x-x_0)^4 = \frac{dx}{dt} (x-x_0)^4 = \frac{1}{5} \frac{d(x-x_0)^5}{dt}
+.\] 
+So the equation of motion becomes
+\[
+    m \frac{dv(t)}{dt} = -\frac{L^2 \beta_0^2 }{R} \frac{1}{5} \frac{d(x-x_0)^5}{dt}
+.\] 
+Move everything to one side and combine the time derivative:
+\[
+    \frac{d}{dt} \left[ m v(t) + \frac{L^2 \beta_0^2}{5R} (x-x_0)^5\right] = 0
+.\] 
+It is obvious that the expression in the square bracket is a constant which can be found using the initial conditions:
+\[
+    (x, v)(t=0) = (x_0, v_0)
+.\] 
+One would say that the hint is not so straight forward to use and I agree. 
+A few of you used a much quicker and much more intuitive method which I will show you here.
+Starting with integration the equation of motion with respect to time:
+\[
+    m \int_0^t dt' \frac{d v}{dt}(t') = -\frac{L^2 \beta_0^2}{R} \int_0^t dt' v(t') (x(t')-x_0)^4
+.\] 
+By the fundamental theorem of calculus and recall that $v = dx/dt$:
+\[
+    m (v(t)-v_0) = -\frac{L^2 \beta_0^2}{R} \int_0^t dt' \frac{dx}{dt} (x(t')-x_0)^4
+.\] 
+Notice that we can change the variable of integration to $x$ now. We have 
+ \[
+     m(v(t)-v_0) = - \frac{L^2 \beta_0}{R} \int_{x_0}^x dx' (x'-x_0)^4
+.\] 
+Evaluating the trivial integral gives:
+\[
+m(v(t)-v_0) = - \frac{L^2 \beta_0^2}{R} \frac{1}{5} (x-x_0)^5
+.\] 
+
+Two of you decided to torture themselves\footnote{I torture myself as well by spending an hour verifying the by parts calculations} by integrating the equation of motion by parts. 
+Consider the indefinite integral $I$:
+ \[
+     I = \int dt \frac{dx}{dt} (x-x_0)^4 
+.\] 
+Intuitively, the essence of integration by part is that you can ``move'' a derivative operation $d/dt$ to the other part of the integrand with a side-effect of a minus sign and with the consequence of having an extra term. Here, we use it to move $d/dt$ to act on $(x-x_0)^4$:
+\[
+    I = x(x-x_0)^4 - \int dt x \frac{d}{dt} (x-x_0)^4
+.\] 
+\[
+    I = x(x-x_0)^4 - 4 \int dt x \frac{dx}{dt} (x-x_0)^3 
+.\] 
+Notice that $x \frac{dx}{dt} = \frac{1}{2} \frac{dx^2}{dt}$:
+\[
+    I = x(x-x_0)^4 - 2 \int dt \frac{dx^2}{dt} (x-x_0)^3 
+.\]
+Integration by part again:
+\[
+    I = x(x-x_0)^4 - 2 \left[ x^2 (x-x_0)^3 -  \int dt \frac{dx^3}{dt} (x-x_0)^2 \right]
+.\] 
+\[
+    I = x(x-x_0)^4 - 2 x^2 (x-x_0)^3 + 2 \left[ x^3 (x-x_0)^2 - \frac{1}{2} \int dt \frac{dx^4}{dt} (x-x_0) \right]
+.\] 
+\[
+    I = x(x-x_0)^4 - 2 x^2 (x-x_0)^3 + 2  x^3 (x-x_0)^2 - \left[ \int dt \frac{dx^4}{dt} (x-x_0) \right]
+.\] 
+\[
+    I = x(x-x_0)^4 - 2 x^2 (x-x_0)^3 + 2  x^3 (x-x_0)^2 - \left[ x^4 (x-x_0) - \frac{1}{5}\int dt \frac{dx^5}{dt} \right]
+.\]
+\[
+    I = x(x-x_0)^4 - 2 x^2 (x-x_0)^3 + 2  x^3 (x-x_0)^2 - x^4 (x-x_0) + \frac{1}{5}\int dt \frac{dx^5}{dt} 
+.\] 
+Eventually we arrive at the end of the journey of integration by parts and had to deal with the last integral:
+\[
+    \int dt \frac{dx^5}{dt} = \int d(x^5) = x^5 + C 
+,\]
+where $C$ is the constant of integration.
+Our equation of motion after integrating with respect to time now looks like
+\[
+    m v(t) = -\frac{L^2 \beta_0^2}{R} \left(x(x-x_0)^4 - 2 x^2 (x-x_0)^3 + 2  x^3 (x-x_0)^2 - x^4 (x-x_0) + \frac{1}{5} x^5 + C \right)
+.\] 
+Determine $C$ by imposing the initial conditions $(x,v)(t=0) = (x_0, v_0)$:
+\[
+    m v_0 = -\frac{L^2 \beta_0^2}{R} \left( \frac{1}{5} x_0^5 + C\right) 
+.\] 
+\[
+C = - \frac{mRv_0}{L^2\beta_0^2} - \frac{1}{5} x_0^2
+.\] 
+Substitute $C$ back to the expression gives
+ \[
+     m (v(t)-v_0) = -\frac{L^2 \beta_0^2}{R} \left(-\frac{1}{5}x_0^5 + x(x-x_0)^4 - 2 x^2 (x-x_0)^3 + 2  x^3 (x-x_0)^2 - x^4 (x-x_0) + \frac{1}{5} x^5  \right)
+.\] 
+\[
+     m (v(t)-v_0) = -\frac{L^2 \beta_0^2}{5R} \left(-x_0^5 + 5 x(x-x_0)^4 - 10 x^2 (x-x_0)^3 + 10 x^3 (x-x_0)^2 - 5 x^4 (x-x_0) +  x^5  \right)
+.\] 
+Observe the pattern $(1, 5, 10, 10, 5, 1)$ in the coefficients. Rang a bell? Those are the binomial coefficients, or in other words, the fifth row in the pascal triangle\footnote{If you regard the top row as the zeroth row}. So the polynomial is just $(x-x_0)^5$ and we recover the expression obtained above using the hint.
+\section*{Question 2}
+This question is about the magnetic field of the Earth (or any magnetic dipole really). Knowledge tested include integration with spherical coordinates and understanding of magnetic field lines.
+\subsection{(a)}
+Not much can be said on this. You just have to know which component of the B-field to use. \subsecion{(b)}
+Same as above.
+\subsection{(c)}
+\end{document}
