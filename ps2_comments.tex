@@ -155,7 +155,7 @@ Eventually we arrive at the end of the journey of integration by parts and had t
 \[
     \int dt \frac{dx^5}{dt} = \int d(x^5) = x^5 + C 
 ,\]
-where $C$ is the constant of integration.
+where $C$ is the constant of integration. Notice that we can do this change of variable form $t$ to  $x$ in the very first step and avoid all the subsequence integration by parts. 
 Our equation of motion after integrating with respect to time now looks like
 \[
     m v(t) = -\frac{L^2 \beta_0^2}{R} \left(x(x-x_0)^4 - 2 x^2 (x-x_0)^3 + 2  x^3 (x-x_0)^2 - x^4 (x-x_0) + \frac{1}{5} x^5 + C \right)
@@ -169,16 +169,100 @@ C = - \frac{mRv_0}{L^2\beta_0^2} - \frac{1}{5} x_0^2
 .\] 
 Substitute $C$ back to the expression gives
  \[
-     m (v(t)-v_0) = -\frac{L^2 \beta_0^2}{R} \left(-\frac{1}{5}x_0^5 + x(x-x_0)^4 - 2 x^2 (x-x_0)^3 + 2  x^3 (x-x_0)^2 - x^4 (x-x_0) + \frac{1}{5} x^5  \right)
+     m (v(t)-v_0) = -\frac{L^2 \beta_0^2}{R} \left(  x(x-x_0)^4 - 2 x^2 (x-x_0)^3 + 2  x^3 (x-x_0)^2 - x^4 (x-x_0) + \frac{1}{5} x^5 -\frac{1}{5}x_0^5 \right)
 .\] 
 \[
-     m (v(t)-v_0) = -\frac{L^2 \beta_0^2}{5R} \left(-x_0^5 + 5 x(x-x_0)^4 - 10 x^2 (x-x_0)^3 + 10 x^3 (x-x_0)^2 - 5 x^4 (x-x_0) +  x^5  \right)
+     m (v(t)-v_0) = -\frac{L^2 \beta_0^2}{5R} \left(5 x(x-x_0)^4 - 10 x^2 (x-x_0)^3 + 10 x^3 (x-x_0)^2 - 5 x^4 (x-x_0) +  x^5 - x_0^5 \right)
 .\] 
-Observe the pattern $(1, 5, 10, 10, 5, 1)$ in the coefficients. Rang a bell? Those are the binomial coefficients, or in other words, the fifth row in the pascal triangle\footnote{If you regard the top row as the zeroth row}. So the polynomial is just $(x-x_0)^5$ and we recover the expression obtained above using the hint.
+Observe the pattern $(5, 10, 10, 5, 1)$ in the coefficients. Rang a bell? Those are the binomial coefficients, or in other words, the fifth row in the pascal triangle\footnote{If you regard the top row as the zeroth row}. However, the term $-(x-x_0)^5$ is missing so we need to add it and subtract it:
+\[
+    (x-x_0)^5 + \left[- (x-x_0)^5 + 5 x(x-x_0)^4 - 10 x^2 (x-x_0)^3 + 10 x^3 (x-x_0)^2 - 5 x^4 (x-x_0) +  x^5 \right] - x_0^5 
+.\] 
+Which is just
+\[
+    (x-x_0)^5 + (x-(x-x_0))^5 - x_0^5 = (x-x_0)^5 + x_0^5 - x_0^5 = (x-x_0)^5
+.\] 
+So the polynomial is just $(x-x_0)^5$ and we recover the expression obtained above using the hint.
 \section*{Question 2}
 This question is about the magnetic field of the Earth (or any magnetic dipole really). Knowledge tested include integration with spherical coordinates and understanding of magnetic field lines.
-\subsection{(a)}
-Not much can be said on this. You just have to know which component of the B-field to use. \subsecion{(b)}
-Same as above.
-\subsection{(c)}
+
+The magnetic field of a dipole is 
+ \[
+     \bm{B} = - B_0 R_E^3 \left( 2 \frac{\cos\theta}{r^3} \mathbf{\hat{r}} + \frac{\sin\theta}{r^3} \hat{\bm{\theta}} \right) 
+.\] 
+\subsection*{(a)}
+Not much can be said on this. You just have to know which component of the B-field to use. 
+The surface consider here is the surface of the Earth but only limited to $\theta_1 \leq \theta \leq \theta_2$. The corresponding normal surface element is $d \bm{S} = dS \bm{\hat{r}}$. So the infinitesimal flux element is just 
+\[
+d\Phi_\text{S} = \bm{B} \cdot d \bm{S} = B_r dS 
+.\] 
+The surface element of a sphere of radius $R_E$ is $dS = R_E^2 \sin\theta d\theta d\phi$. Integrating the flux element from $\theta_1$ to $\theta_2$:
+ \[
+     \Phi_\text{S}(\theta_1, \theta_2) = \int_{\theta_1}^{\theta_2} \int_0^{2\pi} R_E^2 \sin\theta d\theta d\phi B_r(\theta, r=R_E) 
+.\]
+Evaluating the integral gives
+\[
+    |\Phi_\text{S}(\theta_1, \theta_2)| = 2 \pi B_0 R_E^2 \left| \cos^2\theta_1 - \cos^2\theta_2 \right| 
+.\] 
+\subsection*{(b)}
+The surface in this sub-question is the equatorial plane ($\theta=\pi/2$) but limited to  $R_1 < r < R_2$. The corresponding normal surface element is $d \bm{S} = d S (-\hat{\bm{\theta}})$. So the infinitesimal flux element is just 
+\[
+d\Phi_\text{EQ} = \bm{B} \cdot d \bm{S} = B_\theta dS.
+.\] 
+The surface element of the equatorial plane is $dS = r dr d\phi$. Integrating the flux element from  $R_1$ to $R_2$:
+\[
+    \Phi_\text{EQ}(R_1, R_2) = \int_{R_1}^{R_2} \int_0^{2 \pi} r dr d\phi B_\theta(\theta=\pi/2, r)
+.\]
+Evaluating the integral gives
+\[
+\left|\Phi_\text{EQ}(R_1, R_2)\right| = 2 \pi B_0 R_E^2 \left| \frac{R_E}{R_1} - \frac{R_E}{R_2}\right|
+.\] 
+\subsection*{(c)}
+This sub-question can be a tricky one if you fail to understand the question.
+In general, the two fluxes are not always the same if you choose $\left( R_1, R_2, \theta_1, \theta_2 \right) $ arbitrarily, i.e.
+\[
+|\Phi_\text{S}(\theta_1, \theta_2)|  \neq \left|\Phi_\text{EQ}(R_1, R_2)\right| 
+.\] 
+When you enforce that $(\theta_i, R_i)$ are on the same magnetic field line, then the two fluxes the same. That is, if we impose the condition for $i \in \{1, 2\}$
+\[
+R_i = \frac{R_E}{\sin^2\theta_i}
+,\]
+then we have
+\[
+|\Phi_\text{S}(\theta_1, \theta_2)| = \left|\Phi_\text{EQ}\left(\frac{R_E}{\sin^2\theta_1}, \frac{R_E}{\sin^2\theta_2}\right)\right| 
+.\] 
+The above equality is what the question tended you to show. However, it is pretty easy to just guess that you have to use the magnetic field line equation ($R \sin^2\theta = R_E$) to somehow show the two fluxes, $\Phi_\text{S}$ and $\Phi_\text{EQ}$, are equal.
+\subsection*{(d)}
+Very few of you got this sub-question. The main point of this sub-question is to show that for any pair of $(\theta_1, \theta_2)$, we have 
+\[
+|\Phi_\text{S}(\theta_1, \theta_2)| = \left|\Phi_\text{EQ}\left(\frac{R_E}{\sin^2\theta_1}, \frac{R_E}{\sin^2\theta_2}\right)\right| 
+.\] 
+In other words, the question asks if we can determine the value of $\left|\Phi_\text{EQ}\left(\frac{R_E}{\sin^2\theta_1}, \frac{R_E}{\sin^2\theta_2}\right)\right| $, without actually doing the integration, given that we already knew the value of $|\Phi_\text{S}(\theta_1, \theta_2)| $. 
+
+Many of you chose $(\theta_1, \theta_2)$ to be whatever you like them to be and your argument was solely based on your particular choice of $(\theta_1, \theta_2)$. 
+I would like to stress again that you should not make any choices on $(\theta_1, \theta_2)$ (or equivalently, on $(R_1, R_2)$). You answer must be general enough to cover all possible $(\theta_1, \theta_2)$.
+
+Many of you went on to show that the magnetic flux over some closed surface is zero. This is indeed the way to solve this problem but it is very important to choose the correct closed surface.
+The most common choices for the closed surfaces are the surface of the Earth or a hemisphere of the Earth. Obviously these choices of surface are not general and therefore stand no chance in successfully solving the problem. I will give more reasons here for why they are not good choices of surface.
+
+For the entire surface of the Earth, It is simply because your surface does not include any part of the equatorial plane. There is no way your Gauss law would include any information about $|\Phi_\text{EQ}|$.
+
+Choosing a hemisphere (with the equatorial plane closing the surface) is also a bad idea even though it includes part of the equatorial plane. Remember we want to show that 
+\[
+|\Phi_\text{S}(\theta_1, \theta_2)| = \left|\Phi_\text{EQ}\left(\frac{R_E}{\sin^2\theta_1}, \frac{R_E}{\sin^2\theta_2}\right)\right| 
+.\] 
+But notice that $\frac{R_E}{\sin^2\theta} \geq R_E$, so the equatorial plane included in your surface will never appear in the equality the question asked you to prove. Therefore, you will not be able to answer the question with this choice of surface.
+
+The correct choice of the surface is one that comprises of
+\begin{itemize}
+    \item ($S_\text{S}$) the surface used to calculate $\Phi_\text{S}(\theta_1, \theta_2)$
+    \item ($S_\text{EQ}$) the surface used to calculate $\Phi_\text{EQ}\left(\frac{R_E}{\sin^2\theta_1}, \frac{R_E}{\sin^2\theta_2}\right) $
+    \item ($S_\text{conn}$) the two sheets of surface, which both follow the B-field lines, such that $S_\text{S}$ and $S_\text{EQ}$ are joined together to form a closed surface. 
+\end{itemize}
+The reason for including $S_\text{S}$ and $S_\text{EQ}$ is pretty obvious. The connecting surface $S_\text{conn}$ is chosen follow B-field lines such that the magnetic flux $\Phi_\text{conn}$ through $S_\text{conn}$ is zero. 
+Now Gauss law tells us that
+\[
+\Phi_\text{S}(\theta_1, \theta_2) + \Phi_\text{EQ}\left(\frac{R_E}{\sin^2\theta_1}, \frac{R_E}{\sin^2\theta_2}\right) + \Phi_\text{conn} = 0
+.\] 
+But $\Phi_\text{conn}$ is zero so we have the required result.
 \end{document}
